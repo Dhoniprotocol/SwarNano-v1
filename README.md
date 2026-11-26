@@ -11,6 +11,11 @@ tags:
 
 # SwarNano v1
 
+## Project links
+
+- Hugging Face: https://huggingface.co/dhoni420/SwarNano-v1
+- GitHub: https://github.com/Dhoniprotocol/SwarNano-v1
+
 <p align="center">
   <img src="./assets/swarnano-logo.jpg" alt="SwarNano logo" width="600">
 </p>
