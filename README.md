@@ -16,6 +16,13 @@ tags:
 - Hugging Face: https://huggingface.co/dhoni420/SwarNano-v1
 - GitHub: https://github.com/Dhoniprotocol/SwarNano-v1
 
+## GitHub-only v1 browser server
+
+The GitHub repository also provides a local browser UI for testing only the
+FP32 and INT8 v1 weights. See [`SERVER_V1.md`](./SERVER_V1.md) for Windows
+environment setup and run instructions. The creator-authorized runtime is
+required separately and is not included in the repository.
+
 <p align="center">
   <img src="./assets/swarnano-logo.jpg" alt="SwarNano logo" width="600">
 </p>
