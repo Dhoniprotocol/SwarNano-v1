@@ -70,6 +70,34 @@ performance claims are made for the two formats.
 The weight files require a compatible model implementation to run. This
 repository is weights-only and does not provide that implementation.
 
+## Running locally
+
+This package includes `run_swarnano.py`, a thin command-line wrapper. It does
+not include the model implementation or architecture. To run it, you need
+separately authorized runtime files (`serve_tts.py` and
+`language_frontend.py`) and the dependencies supplied for that runtime.
+Place those files beside `run_swarnano.py`, or point `--runtime-dir` to their
+directory. The wrapper and weights alone cannot synthesize speech.
+
+From the package directory, an authorized runtime can be used like this:
+
+```powershell
+python .\run_swarnano.py --text "नमस्ते, यो स्वरनानो हो।" --model .\weights\swarnano_v1_fp32.pt --speaker 0 --output .\output.wav
+```
+
+To use the compressed INT8 weights, set `--model` to
+`.\weights\swarnano_v1_int8.xz`. Select a speaker using its index (`0` to
+`17`) or the source speaker ID from `weights/swarnano_v1_meta.json` (for
+example, `0258`). Use `python .\run_swarnano.py --help` to see all options.
+The output is a mono WAV file at 22,050 Hz. Synthesis runs locally; the
+wrapper does not send text or audio to a cloud API.
+
+The wrapper and runtime are separate software components and are not licensed
+by the weights' CC BY-SA 4.0 grant. The model runtime is provided separately
+with the creator's permission; commercial use of the wrapper, runtime,
+implementation, or architecture requires separate permission. Contact the
+creator through [GitHub](https://github.com/Dhoniprotocol).
+
 ## Intended use and limitations
 
 Use for Nepali speech synthesis, research, and evaluation, subject to the
