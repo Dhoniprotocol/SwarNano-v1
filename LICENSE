@@ -1,24 +1,25 @@
-SwarNano v1 model weights and accompanying metadata
+# SwarNano v1 License
 
-The release publisher offers the materials identified above under the
-Creative Commons Attribution-ShareAlike 4.0 International license (CC BY-SA
-4.0), to the extent the publisher holds the rights necessary to do so.
+The following SwarNano v1 materials are offered under the Creative Commons
+Attribution-ShareAlike 4.0 International license (CC BY-SA 4.0), to the extent
+the release publisher holds the rights necessary to license them:
 
-The source code, model implementation, and architecture are maintained
-separately by the project creator. They are not included or licensed by this
-weights-only release.
+- The FP32 and INT8 v1 model weights and accompanying metadata.
+- The v1 inference source: `serve_tts_v1.py` and `language_frontend.py`.
+- The v1 command-line and browser runners: `run_swarnano.py` and
+  `server_tts_v1.py`.
 
-You are free to share and adapt the licensed material for any purpose,
-including commercially, subject to the license terms. You must give
-appropriate credit, provide a link to the license, indicate changes, and
-distribute adaptations under the same license or a compatible license.
+You may use, share, and adapt these materials, including commercially, subject
+to the license terms. Credit SwarNano v1 and OpenSLR SLR43, link to the
+license, indicate changes, and share adaptations under CC BY-SA 4.0 or a
+compatible license.
+
+The training pipeline, OpenSLR source audio and transcripts, Python
+dependencies, and other third-party materials are not included or licensed by
+this notice. See `DATASET_ATTRIBUTION.md` and `LICENSING.md`.
 
 License deed:
 https://creativecommons.org/licenses/by-sa/4.0/
 
 Legal code:
 https://creativecommons.org/licenses/by-sa/4.0/legalcode
-
-No source dataset audio or transcripts, implementation code, or third-party
-materials are licensed by this notice. Third-party rights are described in
-DATASET_ATTRIBUTION.md and LICENSING.md.

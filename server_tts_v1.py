@@ -44,7 +44,7 @@ PAGE_TEMPLATE = """<!doctype html>
 </head>
 <body>
   <h1>SwarNano v1</h1>
-  <p>Nepali text-to-speech. Processing runs locally on this computer.</p>
+  <p>Nepali-only text-to-speech with 18 female voice options. Processing runs locally.</p>
   <form id="form">
     <label class="field">Nepali text
       <textarea name="text" maxlength="2000" required placeholder="यहाँ नेपाली पाठ लेख्नुहोस्"></textarea>
@@ -56,7 +56,7 @@ PAGE_TEMPLATE = """<!doctype html>
           <option value="int8">INT8 (compressed)</option>
         </select>
       </label>
-      <label class="field">Speaker
+      <label class="field">Female voice
         <select name="speaker">
           {{SPEAKER_OPTIONS}}
         </select>
@@ -125,7 +125,7 @@ def _read_speakers(metadata_path):
 
 def _make_handler(runtime, model_paths, speakers, runtime_dir):
     speaker_options = "\n".join(
-        f'<option value="{index}">{index} (ID {html.escape(source_id)})</option>'
+        f'<option value="{index}">Female voice {index} (ID {html.escape(source_id)})</option>'
         for index, source_id in speakers
     )
     page = PAGE_TEMPLATE.replace("{{SPEAKER_OPTIONS}}", speaker_options).encode("utf-8")
@@ -255,13 +255,13 @@ def create_server(runtime_dir, model_dir, port):
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Run the local SwarNano v1 browser UI using the separately licensed runtime."
+        description="Run the local SwarNano v1 browser UI."
     )
     parser.add_argument(
         "--runtime-dir",
         type=Path,
         default=SCRIPT_DIR,
-        help="Directory containing the authorized runtime files (default: script directory).",
+        help="Directory containing serve_tts_v1.py and language_frontend.py (default: script directory).",
     )
     parser.add_argument(
         "--model-dir",

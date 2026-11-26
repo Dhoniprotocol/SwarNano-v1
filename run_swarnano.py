@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Thin CLI wrapper for the separately licensed SwarNano runtime."""
+"""CLI runner for the SwarNano v1 runtime."""
 
 import argparse
 import importlib.util
@@ -10,18 +10,18 @@ from pathlib import Path
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-RUNTIME_MODULE_NAME = "_swarnano_private_runtime"
+RUNTIME_MODULE_NAME = "_swarnano_v1_runtime"
 
 
 def load_runtime(runtime_dir):
-    runtime_file = runtime_dir / "serve_tts.py"
+    runtime_file = runtime_dir / "serve_tts_v1.py"
     frontend_file = runtime_dir / "language_frontend.py"
     missing = [path.name for path in (runtime_file, frontend_file) if not path.is_file()]
     if missing:
         raise SystemExit(
-            "The separately licensed runtime is not installed. "
-            "Place the authorized runtime files beside this script "
-            f"(missing: {', '.join(missing)}), or set --runtime-dir."
+            "The v1 runtime files are missing. Place serve_tts_v1.py and "
+            "language_frontend.py beside this script, or set --runtime-dir. "
+            f"Missing: {', '.join(missing)}."
         )
 
     if str(runtime_dir) not in sys.path:
@@ -38,7 +38,7 @@ def load_runtime(runtime_dir):
         if error.name in {"numpy", "torch"}:
             raise SystemExit(
                 f"The runtime requires the missing dependency '{error.name}'. "
-                "Install dependencies provided with your licensed runtime."
+                "Install the packages listed in requirements-v1.txt."
             ) from error
         raise
     return runtime
@@ -64,20 +64,20 @@ def resolve_speaker(value, metadata_path):
     valid_indices = {int(index) for index in speaker_map.values()}
     if speaker_index not in valid_indices:
         raise ValueError(
-            f"Speaker index {speaker_index} is not present in {metadata_path}."
+            f"Female voice index {speaker_index} is not present in {metadata_path}."
         )
     return speaker_index
 
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Generate Nepali speech using the separately licensed SwarNano runtime."
+        description="Generate Nepali speech with the SwarNano v1 runtime."
     )
     parser.add_argument(
         "--runtime-dir",
         type=Path,
         default=SCRIPT_DIR,
-        help="Directory containing the authorized runtime files (default: script directory).",
+        help="Directory containing serve_tts_v1.py and language_frontend.py (default: script directory).",
     )
     parser.add_argument(
         "--model",
@@ -88,7 +88,7 @@ def parse_args():
     parser.add_argument(
         "--speaker",
         default="0",
-        help="Speaker index (0-17) or source speaker ID such as 0258 (default: 0).",
+        help="Female voice index (0-17) or source speaker ID such as 0258 (default: 0).",
     )
     parser.add_argument(
         "--speed",
@@ -135,7 +135,7 @@ def main():
     runtime = load_runtime(runtime_dir)
     synthesize = getattr(runtime, "synthesize", None)
     if not callable(synthesize):
-        raise RuntimeError("The licensed runtime does not provide the required synthesize API.")
+        raise RuntimeError("The v1 runtime does not provide the required synthesize API.")
 
     wav_bytes, info = synthesize(
         relative_model_path.as_posix(),
@@ -150,7 +150,7 @@ def main():
 
     print(
         f"Saved {output_path} "
-        f"({info['seconds']:.2f} seconds, {info['sample_rate']} Hz, speaker {speaker})."
+        f"({info['seconds']:.2f} seconds, {info['sample_rate']} Hz, female voice {speaker})."
     )
     if info.get("unknown_characters", 0):
         print(

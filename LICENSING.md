@@ -1,19 +1,36 @@
-# License
+# Licensing and attribution
 
-The SwarNano v1 weights and included metadata are released under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+## SwarNano v1 materials
 
-You may use, share, and adapt them, including commercially. Please credit
-SwarNano v1 and OpenSLR SLR43, link to the license, note any changes, and
-share adaptations under CC BY-SA 4.0 or a compatible license.
+CC BY-SA 4.0 applies, to the extent the release publisher holds the necessary
+rights, to the v1 weights, accompanying metadata, and the following source
+files:
 
-The source code, model implementation, and architecture are maintained
-separately by the project creator. They are not included or licensed by this
-weights-only release.
+- `serve_tts_v1.py`
+- `language_frontend.py`
+- `run_swarnano.py`
+- `server_tts_v1.py`
 
-The OpenSLR audio is not included here. This license notice covers only
-material the release publisher has the right to license; it does not grant
-rights to the source recordings or other third-party material.
+Commercial use is permitted under the license terms. Give appropriate credit,
+link to CC BY-SA 4.0, indicate changes, and share adaptations under the same
+license or a compatible one.
 
-See `DATASET_ATTRIBUTION.md` for the dataset credit and the official license
-links.
+## Third-party materials
+
+No source dataset audio or transcripts are included. The model was trained
+using OpenSLR SLR43, which OpenSLR lists under CC BY-SA 4.0 and credits to
+Google LLC. See `DATASET_ATTRIBUTION.md` for the dataset notice. This
+repository does not grant rights to the source recordings, performers, or
+other third-party materials.
+
+The Python dependencies listed in `requirements-v1.txt` are distributed under
+their own licenses and are not relicensed here.
+
+## Not included
+
+The training pipeline, training data, and v2/multilingual runtime are not
+included in this v1 source release.
+
+License deed: https://creativecommons.org/licenses/by-sa/4.0/
+
+Legal code: https://creativecommons.org/licenses/by-sa/4.0/legalcode

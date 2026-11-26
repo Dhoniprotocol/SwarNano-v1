@@ -22,12 +22,12 @@ Google LLC. The dataset was collected by Google in Nepal.
 
 ## Model context
 
-SwarNano v1 is a Nepali speech model. With a compatible implementation, it can
-produce mono speech audio at 22,050 Hz and offers 18 speaker IDs. The release
-provides FP32 weights (about 6.2 MiB) and compressed INT8 weights (about
-1.4 MiB). These descriptions concern the released files and sample format;
-they are not claims about speed or comparative audio quality. The speaker IDs
-are model options, not verified identities.
+SwarNano v1 is a Nepali-only speech model. With a compatible implementation,
+it can produce mono speech audio at 22,050 Hz and offers 18 female voice
+options. The release provides FP32 weights (about 6.2 MiB) and compressed
+INT8 weights (about 1.4 MiB). These descriptions concern the released files
+and sample format; they are not claims about speed or comparative audio
+quality. The voice options are model embeddings, not verified identities.
 
 Suggested dataset attribution:
 
